@@ -22,12 +22,12 @@ def intersection(bit_scale1, bit_scale2):
 def complement(bit_scale, universe_size):
     """ Дополнение множества относительно универсального множества. """
     full_set = (1 << universe_size) - 1  # Все элементы универсального множества
-    return ~bit_scale & full_set
+    return full_set - bit_scale
 
 
 def difference(bit_scale1, bit_scale2):
     """ Разность двух множеств (битовых шкал). """
-    return bit_scale1 & ~bit_scale2
+    return bit_scale1 - (bit_scale1 & bit_scale2)
 
 
 def from_bit_scale(bit_scale):
@@ -42,7 +42,7 @@ def display_bit_scale(bit_scale, universe_size):
 
 def generate_subset_codes(n):
     """ Генерирует последовательность кодов подмножеств для n-элементного множества. """
-    for i in range(1 << n):  # Эквивалентно range(0, 2^n)
+    for i in range(1 << n):  # range(0, 2^n)
         yield i
 
 
